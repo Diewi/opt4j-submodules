@@ -22,6 +22,16 @@ allprojects {
     }
 }
 
+def descriptions = [
+	'opt4j-core' : 'The core module of Opt4J', 
+	'opt4j-benchmarks' : 'A set of benchmarks for Opt4J',
+	'opt4j-operators' : 'A set of operators for Opt4J', 
+	'opt4j-optimizers' : 'A set of optimizers for Opt4J',
+	'opt4j-satdecoding' : 'The SAT decoding module for Opt4J', 
+	'opt4j-tutorial' : 'The tutorial classes for Opt4J',
+	'opt4j-viewer' : 'The viewer module for Opt4J'
+]
+
 subprojects {
 	apply plugin: 'java'
     apply plugin: 'maven'
@@ -61,7 +71,7 @@ subprojects {
 	            pom.project {
 	               name 'Opt4J'
 	               packaging 'jar'
-	               description 'Opt4J is a modular framework for meta-heuristic optimization.'
+	               description descriptions[project.name]
 	               url 'http://www.opt4j.org'
 	 
 	               scm {
@@ -130,7 +140,7 @@ boolean isSnapshot() {
 
 import org.apache.tools.ant.filters.ReplaceTokens
 
-task website(dependsOn: ":opt4j-tutorial:makeDocbook") {
+task website(dependsOn: [":opt4j-tutorial:makeDocbook", 'alldocs']) {
 	copy {
 		from('src/main/website/') {
 	        include '**/*.html'
@@ -141,10 +151,35 @@ task website(dependsOn: ":opt4j-tutorial:makeDocbook") {
 		}
 		into 'build/website/'
 	}
-	def docpath=''+project(':opt4j-tutorial').buildDir+'/docbook'
+	def docpath=new File(project(':opt4j-tutorial').buildDir,'docbook')
 	copy {
-		from docpath+'/pdf' 
-		from docpath+'/html'
+		from new File(docpath,'pdf')
+		from new File(docpath,'html')
 		into 'build/website/documentation/'+version
 	}
+	copy {
+		from new File(project.buildDir, 'docs/javadoc')
+		into 'build/website/javadoc/'+version
+	}
 }
+
+
+task alldocs(type: Javadoc) {
+   title = "Opt4J version $version Project API Documentation"
+   destinationDir = new File(project.buildDir, 'docs/javadoc')
+   def optionsFile = new File( 'build/tmp/javadoc.txt' )
+
+   subprojects.each {subproject ->
+     source subproject.sourceSets.main.java
+   }
+   exclude 'ptolemy/**'
+
+   subprojects.each { subproject ->
+     if( classpath )
+       classpath += subproject.sourceSets.main.output + subproject.sourceSets.main.compileClasspath
+     else
+       classpath = subproject.sourceSets.main.output + subproject.sourceSets.main.compileClasspath
+   }
+}
+
+task release(dependsOn: [distZip,website] ){}
