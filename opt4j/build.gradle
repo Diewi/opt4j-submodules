@@ -42,6 +42,13 @@ subprojects {
 	apply plugin: 'java'
     apply plugin: 'maven'
     apply plugin: 'signing'
+    apply plugin: 'eclipse'
+	
+	eclipse {
+		classpath {
+			containers 'org.springsource.ide.eclipse.gradle.classpathcontainer'
+		}
+	}
 
     sourceCompatibility = 1.6 
 	targetCompatibility = 1.6
