@@ -115,7 +115,7 @@ p {
 	padding-left: 8px;
 }
 
-p.tip {
+.tip {
 	padding-left: 40px;
 	padding-top: 8px;
 	padding-bottom: 8px;
@@ -123,4 +123,8 @@ p.tip {
 	background: url(img/tip.png) left no-repeat;
 	margin-left: 8px;
 	font-style: italic;
+}
+
+pre {
+	font-style: normal;
 }
