@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 <link href="prettify.css" type="text/css" rel="stylesheet" />
 <link href="tutstyle.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="prettify.js"></script>
-<title>Opt4J &mdash; A Modular Framework for Meta-heuristic Optimization &mdash; Tutorial</title>
+<title>Opt4J &mdash; A Modular Framework for Meta-heuristic
+	Optimization &mdash; Tutorial</title>
 </head>
 <body onload="prettyPrint()">
 
@@ -15,6 +16,7 @@
 	<h2 class="nocount">Contents</h2>
 	<ol>
 		<li><a href="#installation">Installation</a></li>
+		<li><a href="#building">Building and Eclipse Integration</a></li>
 		<li><a href="#problems">Defining Optimization Problems</a></li>
 		<li><a href="#algorithms">Defining Optimization Algorithms</a></li>
 		<li><a href="#integration">Integration</a></li>
@@ -35,17 +37,17 @@
 	<ul class="iconlist">
 		<li class="folder">opt4j-@version@</li>
 		<li><ul class="iconlist">
-			<li class="folder">bin</li>
-			<li><ul class="iconlist">
-				<li class="linux">opt4j</li>
-				<li class="bat">opt4j.bat</li>
-				<li class="xml">test.config.xml</li>
-				<li class="python">batch.py</li>
+				<li class="folder">bin</li>
+				<li><ul class="iconlist">
+						<li class="linux">opt4j</li>
+						<li class="bat">opt4j.bat</li>
+						<li class="xml">test.config.xml</li>
+						<li class="python">batch.py</li>
+					</ul></li>
+				<li class="folder">lib</li>
+				<li class="folder">licenses</li>
+				<li class="folder">plugins</li>
 			</ul></li>
-			<li class="folder">lib</li>
-			<li class="folder">licenses</li>
-			<li class="folder">plugins</li>
-		</ul></li>
 	</ul>
 	<p>The application is launched with opt4j.bat under Windows and
 		opt4j under Linux/Unix/OSX, respectively. Once started, it will appear
@@ -55,8 +57,8 @@
 	<p>To develop custom optimization problems and algorithms for
 		Opt4J, the files in the lib folder have to be on the classpath for
 		compiling and starting the code. To start the module configurator
-		manually, one has to run the class @Opt4J@ which
-		contains a corresponding main method.</p>
+		manually, one has to run the class @Opt4J@ which contains a
+		corresponding main method.</p>
 	<p>To execute a specific configuration without the indirection over
 		the user interface, you need to pass a configuration file to the
 		application with the additional -s parameter to start the
@@ -72,16 +74,41 @@
 		batch.py' to get further instructions how to use the script.</p>
 
 	<h2>
+		<a id="building"></a>Building and Eclipse Integration
+	</h2>
+	<p>
+		Opt4J relies on the build automation tool <a href="http://gradle.org/">Gradle</a>.
+		Available build tasks are shown with the following build task:
+	</p>
+	<pre class="console">&gt; gradle tasks</pre>
+	<p>Opt4J can be executed with Gradle:</p>
+	<pre class="console">&gt; gradle run</pre>
+	<p>The relevant Eclipse project files (.project and .classpath) are
+		created with:</p>
+	<pre class="console">&gt; gradle eclipse</pre>
+	<p>
+		Then, in Eclipse you can <i>Import&hellip; &rarr; Existing
+			Projects into Workspace</i> and select the Opt4J root directory. Import
+		all subprojects by enabling <i>Search for nested projects</i>.
+	</p>
+	<div class="tip">
+		<p>Gradle will not overwrite existing Eclipse files. If you
+			already have an Eclipse Opt4J project, you can regenerate the project
+			settings:</p>
+		<pre class="console">&gt; gradle cleanEclipseClasspath eclipseClasspath</pre>
+	</div>
+
+	<h2>
 		<a id="problems"></a>Defining Optimization Problems
 	</h2>
 
-	<p>Custom optimization problems are typically defined by providing
-		three main classes:
-		(1) The @Creator@,
-		(2) the @Decoder@, and
-		(3) the @Evaluator@.
-		The functionality of these classes is illustrated in the following figure:
-		<img src="img/problem.png" alt="Creator &rarr; Genotype &rarr; Decoder &rarr; Phenotype &rarr; Evaluator &rarr; Objectives"/></p>
+	<p>
+		Custom optimization problems are typically defined by providing three
+		main classes: (1) The @Creator@, (2) the @Decoder@, and (3) the
+		@Evaluator@. The functionality of these classes is illustrated in the
+		following figure: <img src="img/problem.png"
+			alt="Creator &rarr; Genotype &rarr; Decoder &rarr; Phenotype &rarr; Evaluator &rarr; Objectives" />
+	</p>
 	<p>The creator provides random genotypes. A genotype is the genetic
 		representation of an individual. The decoder transforms the genotype
 		into the phenotype which represents all observable characteristics and
@@ -112,10 +139,10 @@
 		classes that allows to select from a given alphabet and initialize it
 		randomly with eleven (11) characters.</p>
 	<p class="tip">Note that Opt4J contains a set of predefined
-		genotype classes (in the @genotype@ package) that can
-		also be combined and one should always choose from this set if
-		possible instead of implementing custom genotypes that require an
-		implementation of custom operators.</p>
+		genotype classes (in the @genotype@ package) that can also be combined
+		and one should always choose from this set if possible instead of
+		implementing custom genotypes that require an implementation of custom
+		operators.</p>
 
 	<p>In the second step, we define the decoder that implicitly
 		defines the phenotype:</p>
@@ -138,7 +165,7 @@
 	<p>The problem module defines the problem and here particularly the
 		corresponding creator, decoder, and evaluator. Once the module
 		configurator is started, this problem module is automatically detected
-		if it is on the classpath and we can select it. </p>
+		if it is on the classpath and we can select it.</p>
 	<p class="tip">You can also add additional evaluators and, thus,
 		implicitly additional objectives by passing the additional evaluator
 		class to the @addEvaluator@ method inside the config method.</p>
@@ -245,20 +272,20 @@
 	<h3>Example: Mutate Optimizer</h3>
 
 	<p>This example shows how to write a very simple optimizer that is
-		based on mutation only. The presented optimizer has a fixed population size
-		of 100 and creates 25 offspring individuals from 25 parent individuals
-		each generation by a mutate operation. The optimizer is implemented as
-		follows:</p>
+		based on mutation only. The presented optimizer has a fixed population
+		size of 100 and creates 25 offspring individuals from 25 parent
+		individuals each generation by a mutate operation. The optimizer is
+		implemented as follows:</p>
 	<pre class="prettyprint">@file(org/opt4j/tutorial/optimizer/MutateOptimizer.java)</pre>
-	<p>The initialization ensures that the selector is initialized. The optimization 
-		process is implemented in the next method. In the first iteration, the population 
-		is still empty and 100 new individuals are created and added. 
-		In all following iterations, first, the population is reduced to 100 by 
-		removing the worst individuals that are identified by the selector. Then, 25
-		parent individuals are determined by the selector and for each of
-		these individuals, one individual is created by copying the genotype
-		and mutating it. Finally, the new individuals are added to the
-		population.</p>
+	<p>The initialization ensures that the selector is initialized. The
+		optimization process is implemented in the next method. In the first
+		iteration, the population is still empty and 100 new individuals are
+		created and added. In all following iterations, first, the population
+		is reduced to 100 by removing the worst individuals that are
+		identified by the selector. Then, 25 parent individuals are determined
+		by the selector and for each of these individuals, one individual is
+		created by copying the genotype and mutating it. Finally, the new
+		individuals are added to the population.</p>
 
 	<p>The optimization module looks as follows:</p>
 	<pre class="prettyprint">@file(org/opt4j/tutorial/optimizer/MutateOptimizerModule.java)</pre>
@@ -297,30 +324,29 @@ try {
 } finally {
         task.close();
 } </pre>
-	<p>First, you will have to construct the desired modules for the
-		optimization process. An optimization process requires at
-		least a
-		@ProblemModule@
-		which defines the Creator, Decoder, and Evaluator as described in
-		<a href="#problems">Section 2</a>. Here, the
-		@DTLZModule@
-		is used as an example. Also, an
-		@OptimizerModule@
-		is required which defines the optimization algorithm to use for the problem. In the	example, the
-		@EvolutionaryAlgorithmModule@ is chosen but also the MutateOptimizerModule as developed in <a href="#algorithms">Section 3</a> could be used here. Additionally, the optional
-		@ViewerModule@
-		is created, which provides the GUI for the optimization process.</p>
-	<p>The
-		@Opt4JTask@
-		takes these modules and controls the optimization process.
-		Here, it is constructed with the parameter <code>false</code> that
-		indicates that the task is closed manually and not
-		automatically once the optimization stops. The Opt4JTask is
-		initialized with the modules. Now, it is possible to execute the task
-		(which is blocking in this case, but you can also start it in a
-		separate thread) and once the optimization is finished, you can obtain
-		the @Archive@ to iterate over the best solutions. After closing the
-		task, obtaining instances like the Archive is not possible anymore.</p>
-
+	<p>
+		First, you will have to construct the desired modules for the
+		optimization process. An optimization process requires at least a
+		@ProblemModule@ which defines the Creator, Decoder, and Evaluator as
+		described in <a href="#problems">Section 2</a>. Here, the @DTLZModule@
+		is used as an example. Also, an @OptimizerModule@ is required which
+		defines the optimization algorithm to use for the problem. In the
+		example, the @EvolutionaryAlgorithmModule@ is chosen but also the
+		MutateOptimizerModule as developed in <a href="#algorithms">Section
+			3</a> could be used here. Additionally, the optional @ViewerModule@ is
+		created, which provides the GUI for the optimization process.
+	</p>
+	<p>
+		The @Opt4JTask@ takes these modules and controls the optimization
+		process. Here, it is constructed with the parameter
+		<code>false</code>
+		that indicates that the task is closed manually and not automatically
+		once the optimization stops. The Opt4JTask is initialized with the
+		modules. Now, it is possible to execute the task (which is blocking in
+		this case, but you can also start it in a separate thread) and once
+		the optimization is finished, you can obtain the @Archive@ to iterate
+		over the best solutions. After closing the task, obtaining instances
+		like the Archive is not possible anymore.
+	</p>
 </body>
 </html>
