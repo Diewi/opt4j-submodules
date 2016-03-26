@@ -233,7 +233,7 @@ task alldocs(type: Javadoc) {
 task release(dependsOn: [distZip,website] ){}
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.4'
+    gradleVersion = '2.12'
 }
 
 task fatjar(dependsOn: subprojects.jar, type: Jar) {
