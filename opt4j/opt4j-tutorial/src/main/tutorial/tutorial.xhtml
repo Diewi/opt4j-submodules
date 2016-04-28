@@ -91,11 +91,12 @@
 			Projects into Workspace</i> and select the Opt4J root directory. Import
 		all subprojects by enabling <i>Search for nested projects</i>.
 	</p>
+	<p>Create a run configuration in the top project opt4j and set the Main class to org.opt4j.core.start.Opt4J.</p>
 	<div class="tip">
 		<p>Gradle will not overwrite existing Eclipse files. If you
 			already have an Eclipse Opt4J project, you can regenerate the project
 			settings:</p>
-		<pre class="console">&gt; gradle cleanEclipseClasspath eclipseClasspath</pre>
+		<pre class="console">&gt; gradle cleanEclipse eclipse</pre>
 	</div>
 
 	<h2>
