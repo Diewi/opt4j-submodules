@@ -10,3 +10,6 @@
 [submodule "opt4j-optimizers"]
 	path = opt4j-optimizers
 	url = https://github.com/Diewi/opt4j-optimizers.git
+[submodule "opt4j-satdecoding"]
+	path = opt4j-satdecoding
+	url = https://github.com/Diewi/opt4j-satdecoding.git
