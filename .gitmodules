@@ -1,0 +1,3 @@
+[submodule "opt4j-benchmarks"]
+	path = opt4j-benchmarks
+	url = https://github.com/Diewi/opt4j-benchmarks.git
