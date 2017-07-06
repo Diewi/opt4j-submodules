@@ -16,3 +16,6 @@
 [submodule "opt4j-tutorial"]
 	path = opt4j-tutorial
 	url = https://github.com/Diewi/opt4j-tutorial.git
+[submodule "opt4j-viewer"]
+	path = opt4j-viewer
+	url = https://github.com/Diewi/opt4j-viewer.git
