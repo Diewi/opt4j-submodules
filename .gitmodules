@@ -7,3 +7,6 @@
 [submodule "opt4j-operators"]
 	path = opt4j-operators
 	url = https://github.com/Diewi/opt4j-operators.git
+[submodule "opt4j-optimizers"]
+	path = opt4j-optimizers
+	url = https://github.com/Diewi/opt4j-optimizers.git
