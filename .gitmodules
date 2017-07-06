@@ -13,3 +13,6 @@
 [submodule "opt4j-satdecoding"]
 	path = opt4j-satdecoding
 	url = https://github.com/Diewi/opt4j-satdecoding.git
+[submodule "opt4j-tutorial"]
+	path = opt4j-tutorial
+	url = https://github.com/Diewi/opt4j-tutorial.git
