@@ -4,3 +4,6 @@
 [submodule "opt4j-core"]
 	path = opt4j-core
 	url = https://github.com/Diewi/opt4j-core.git
+[submodule "opt4j-operators"]
+	path = opt4j-operators
+	url = https://github.com/Diewi/opt4j-operators.git
