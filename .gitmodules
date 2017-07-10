@@ -4,18 +4,25 @@
 [submodule "opt4j-core"]
 	path = opt4j-core
 	url = https://github.com/Diewi/opt4j-core.git
+	branch = master
 [submodule "opt4j-operators"]
 	path = opt4j-operators
 	url = https://github.com/Diewi/opt4j-operators.git
+	branch = master
 [submodule "opt4j-optimizers"]
 	path = opt4j-optimizers
 	url = https://github.com/Diewi/opt4j-optimizers.git
+	branch = master
 [submodule "opt4j-satdecoding"]
 	path = opt4j-satdecoding
 	url = https://github.com/Diewi/opt4j-satdecoding.git
+	branch = master
 [submodule "opt4j-tutorial"]
 	path = opt4j-tutorial
 	url = https://github.com/Diewi/opt4j-tutorial.git
+	branch = master
 [submodule "opt4j-viewer"]
 	path = opt4j-viewer
 	url = https://github.com/Diewi/opt4j-viewer.git
+	branch = master
+
